@@ -2,11 +2,10 @@ import * as React from "react";
 import { useStaticQuery, graphql, Link as GatsbyLink } from "gatsby";
 import { Link } from "@chakra-ui/react";
 import Layout from '../components/layout/layout.component'
-import HomePage from '../components/homePage/homePage.component'
 
 
 
-const IndexPage = () => {
+const HomePage = () => {
   const data = useStaticQuery(graphql`
     {
       allWpArtwork {
@@ -43,7 +42,6 @@ const IndexPage = () => {
 // console.log(data);
   return (
     <Layout>
-    <HomePage />
       <div className="bodyContainer">
           {allWpArtwork.nodes.map(({ id, title, uri ,featuredImage,categories}) => (
 
@@ -80,4 +78,4 @@ const IndexPage = () => {
   );
 };
 
-export default IndexPage;
+export default HomePage;

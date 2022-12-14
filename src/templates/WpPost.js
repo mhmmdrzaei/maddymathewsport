@@ -2,14 +2,26 @@ import React from "react"
 import {Link} from "@chakra-ui/react";
 import {graphql, Link as GatsbyLink} from "gatsby";
 // import { Helmet } from "react-helmet/es/Helmet";
+import Layout from '../components/layout/layout.component'
 
 const WpPost = ({ data }) => {
     const { wpArtwork } = data;
     const flex = wpArtwork.artworksfields.artworksContent || []
-    const featured = wpArtwork.featuredImage
-    return(
+    const featured = ()=> {
+        if (!wpArtwork.artworksfields.artworksContent) {
+            console.log(wpArtwork.featuredImage);
+            return (            
+                 <div className="projectVisuals"> 
+                <img src=
+                {wpArtwork.featuredImage.node.publicUrl} alt=
+                {wpArtwork.featuredImage.node.altText} /> 
+                </div>)
 
-        <div className="container" key={wpArtwork.contentType.node.id} >
+        }
+    }   
+    return(
+        <Layout key={wpArtwork.contentType.node.id} >
+            
             <div className="projectInfo">
                 <h2>
                     {wpArtwork.title}
@@ -22,9 +34,7 @@ const WpPost = ({ data }) => {
                      <ul>
                        <li key={id} >
                        <Link as={GatsbyLink} to={link} key={id}>
-                       <span>
                          {name}
-                       </span>
                        </Link>
                        </li>
                      </ul>
@@ -36,7 +46,7 @@ const WpPost = ({ data }) => {
             </div> 
 
             <div className="flexContent"> 
-
+            {featured()}
 
               {
 
@@ -66,10 +76,11 @@ const WpPost = ({ data }) => {
                     })
                 }
 
+
+
             </div>
 
-                
-        </div>
+        </Layout>
 
     )
 }

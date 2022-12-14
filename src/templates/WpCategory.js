@@ -2,13 +2,14 @@ import React from "react"
 import {Link} from "@chakra-ui/react";
 import {graphql, Link as GatsbyLink} from "gatsby";
 // import { Helmet } from "react-helmet/es/Helmet";
+import Layout from '../components/layout/layout.component'
 
 
 const CategoryPageTemplate = ({ data }) => {
   const { wpCategory } = data;
   console.log(data);
   return (
-    <>
+   <Layout>
     <h2>{wpCategory.name}</h2>
     <div className="bodyContainer">
         {wpCategory.artworks.nodes.map(({ id, title, uri ,featuredImage,categories}) => (
@@ -39,7 +40,7 @@ const CategoryPageTemplate = ({ data }) => {
            </div>
         ))}
     </div>
-    </>
+    </Layout>
   )
 }
 
