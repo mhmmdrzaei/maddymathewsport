@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useStaticQuery, graphql, Link as GatsbyLink } from "gatsby";
-import { Link } from "@chakra-ui/react";
+import { useStaticQuery, graphql } from "gatsby";
+import ArtworkItem from '../artworkItem/artworkItem.component'
 
 const HomePage = ()=> {
 	const homePageData = useStaticQuery(graphql`
@@ -12,6 +12,7 @@ const HomePage = ()=> {
 		      homePageLayout {
 		        ... on WpPage_Homepagefields_HomePageLayout_FullWidthPost {
 		          fieldGroupName
+		          objectPostingSize
 		          fullWidthPost {
 		            ... on WpArtwork {
 		              id
@@ -37,11 +38,14 @@ const HomePage = ()=> {
 		        }
 		        ... on WpPage_Homepagefields_HomePageLayout_HalfWidthAnnouncement {
 		          fieldGroupName
+
+
 		          halfWidthAnnouncementContent {
 		            fieldGroupName
 		            announcementImage {
 		              altText
 		              publicUrl
+		              id
 		            }
 		            announcementLink
 		            announcementText
@@ -55,9 +59,47 @@ const HomePage = ()=> {
 
 
 		`)
+	
 
+	const layoutfieds = homePageData.wpPage.homePageFields.homePageLayout;
 	return (
-		<h1>test</h1>
+
+	<div className="bodyContainer">
+	{
+
+	      layoutfieds.map(({fieldGroupName,fullWidthPost,halfWidthAnnouncementContent,objectPostingSize})=> {
+	        
+	          if(fieldGroupName === 'Page_Homepagefields_HomePageLayout_HalfWidthAnnouncement') {
+	              return (
+	              	<div className="announcementHome" key={halfWidthAnnouncementContent.announcementImage.id}>
+	              	  <img src={halfWidthAnnouncementContent.announcementImage.publicUrl} alt={halfWidthAnnouncementContent.announcementImage.altText} />
+	              	  <div className="listingDetails">
+	              	  <a href={halfWidthAnnouncementContent.announcementLink} target="_blank" rel="noopener noreferrer">
+	              	    {halfWidthAnnouncementContent.announcementText}
+	              	  </a>
+	              	  </div>
+	              	
+	              	 </div>
+
+
+	              	)
+	          }
+	          if(fieldGroupName === 'Page_Homepagefields_HomePageLayout_FullWidthPost') {
+
+	              return (
+	              	 <ArtworkItem data={fullWidthPost} key={fullWidthPost.id} sizing={objectPostingSize} />
+
+	              	)
+	                 
+	
+	          }
+	          else return [];
+
+	        
+	      })
+	  }
+
+    </div>
 		)
 }
 export default HomePage
