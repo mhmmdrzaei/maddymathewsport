@@ -15,7 +15,7 @@ const ArtworkItem = ({data, sizing})=> {
 
 	return (
 		<div className={`listingEach ${BOX_SIZING_STYLES[sizing]}`} key={id}>
-		  <img src={featuredImage.node.publicUrl} alt={featuredImage.node.altText} />
+		  <img loading="lazy" src={featuredImage.node.publicUrl} alt={featuredImage.node.altText} />
 		  <div className="listingDetails">
 		  <Link as={GatsbyLink} to={uri}>
 		    <h2>{title}</h2>

@@ -30,7 +30,10 @@ const ArtWorkPageVisuals = ({wpArtwork})=> {
 		                    const assts = {publicUrl, altText, i}
 		                    return(
 
-		                        <img src={assts.publicUrl} alt={assts.altText} key={assts.i} / >
+		                        <img loading="lazy" 
+		                        src={assts.publicUrl} 
+		                        alt={assts.altText} 
+		                        key={assts.i} / >
 		                        )
 		                
 		                })
