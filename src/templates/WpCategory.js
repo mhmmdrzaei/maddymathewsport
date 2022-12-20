@@ -4,6 +4,7 @@ import {graphql } from "gatsby";
 // import { Helmet } from "react-helmet/es/Helmet";
 import Layout from '../components/layout/layout.component'
 import ArtworkItem from '../components/artworkItem/artworkItem.component'
+import Seo from '../components/seo/seo.component'
 
 const CategoryPageTemplate = ({ data }) => {
   const { wpCategory } = data;
@@ -22,7 +23,9 @@ const CategoryPageTemplate = ({ data }) => {
   )
 }
 
+
 export default CategoryPageTemplate;
+export const Head = () => <Seo title="Artworks" />
 
 export const pageQuery = graphql`
 

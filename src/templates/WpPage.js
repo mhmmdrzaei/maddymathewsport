@@ -3,6 +3,7 @@ import {graphql} from "gatsby";
 // import { Helmet } from "react-helmet/es/Helmet";
 import Layout from '../components/layout/layout.component'
 import HomePage from '../components/homePage/homePage.component'
+import Seo from '../components/seo/seo.component'
 
 const PagePageTemplate = ({ data }) => {
   const { wpPage } = data;
@@ -27,7 +28,7 @@ const PagePageTemplate = ({ data }) => {
     </Layout>
   )
 }
-
+export const Head = () => <Seo title="Visual Artist" />
 export default PagePageTemplate;
 
 export const pageQuery = graphql`

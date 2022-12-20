@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: "Maddy Mathews",
+    author: 'Mohammad Rezaei',
+    description: 'Maddy Mathews is Canadian Visual Artist'
   },
   plugins: [
     `gatsby-plugin-sharp`,
@@ -9,7 +11,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `http://localhost:8888/maddyMathews/graphql`,
+        url: `https://maddymathews.com/maddyback/graphql`,
       },
     },
     {

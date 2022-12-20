@@ -4,6 +4,8 @@ import {graphql} from "gatsby";
 import Layout from '../components/layout/layout.component'
 import ArtworkPageDetails from '../components/artworkPageDetails/artworkPageDetails.component';
 import ArtWorkPageVisuals from '../components/artworkPageVisuals/artworkPageVisuals.component';
+import Seo from '../components/seo/seo.component'
+
 
 
 const WpPost = ({ data }) => {
@@ -17,7 +19,11 @@ const WpPost = ({ data }) => {
     )
 }
 
+
 export default WpPost;
+
+export const Head = () => <Seo title="Visual Artist" />
+
 
 export const query = graphql`
 query PostById($id: String) {
