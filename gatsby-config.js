@@ -9,6 +9,12 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-image`,
     {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        icon: 'src/images/icon.png',
+      },
+    },
+    {
       resolve: `gatsby-source-wordpress`,
       options: {
         url: `https://maddymathews.com/maddyback/graphql`,
